@@ -112,7 +112,7 @@ public class Menu extends JFrame {
 
 
 		comboxTenMon = new JComboBox();
-		comboxTenMon.setModel(new DefaultComboBoxModel(new String[] {"Cà phê sữa phin/máy", "Cà phê đen phin/ máy", "Cà phê sữa Sài Gòn", "Cà phê đen Sài Gòn", "Cà phê muối", "Trà gừng mật ong", "Trà gừng thảo mộc", "Trà lipton", "Trà ÔLong", "Trà Matcha", "Trà Sữa Truyền Thống ", "Sữa tươi Trân châu đường đen", "Sữa chua Dâu", "Sữa chua Xoài", "Sữa chua Trái cây", "Nước ép Cam", "Nước ép Dứa", "Nước ép Cốc", "Nước ép Dưa hấu", "Nước ép Ổi", "Kem Dâu", "Kem Xoài", "Kem Trái Cây", "Kem Dưa Hấu"}));
+		comboxTenMon.setModel(new DefaultComboBoxModel(new String[] {"Cà phê sữa phin/máy", "Cà phê đen phin/ máy", "Cà phê sữa Sài Gòn", "Cà phê đen Sài Gòn", "Cà phê muối", "Trà gừng mật ong", "Trà gừng thảo mộc", "Trà lipton", "Trà ÔLong", "Trà Matcha", "Trà Sữa Truyền Thống ", "Sữa tươi Trân châu đường đen", "Sữa chua Dâu", "Sữa chua Xoài", "Sữa chua Trái cây", "Nước ép Cam", "Nước ép Dứa", "Nước ép cóc", "Nước ép Dưa hấu", "Nước ép Ổi", "Kem Dâu", "Kem Xoài", "Kem Trái Cây", "Kem Dưa Hấu"}));
 		comboxTenMon.setToolTipText("");
 		comboxTenMon.setBounds(118, 102, 148, 21);
 		layeredPane.add(comboxTenMon);
@@ -144,7 +144,6 @@ public class Menu extends JFrame {
 			        ban1.napDuLieuTuCSDL();
 		            ban1.setVisible(true);
 		        }
-
 			}
 		});
 		
@@ -163,8 +162,6 @@ public class Menu extends JFrame {
 				ban1.setVisible(true);
 			}
 		});
-		
-		
 	}
 	
 
@@ -196,7 +193,7 @@ public class Menu extends JFrame {
 			return 25000;
 		case "Sữa chua Dâu":
 			return 20000;
-		case "Sữa chua Xoài":
+		case "Sữa chua xoài":
 			return 20000;
 		case "Sữa chua Trái cây":
 			return 26000;
@@ -204,7 +201,7 @@ public class Menu extends JFrame {
 			return 28000;
 		case "Nước ép Dứa":
 			return 22500;
-		case "Nước ép Cốc":
+		case "Nước ép cóc":
 			return 18000;
 		case "Nước ép Dưa hấu":
 			return 23000;
@@ -260,7 +257,7 @@ public class Menu extends JFrame {
 			return "N00E";
 		case "Nước ép Dứa":
 			return "N01E";
-		case "Nước ép Cốc":
+		case "Nước ép cóc":
 			return "N02E";
 		case "Nước ép Dưa hấu":
 			return "N03E";

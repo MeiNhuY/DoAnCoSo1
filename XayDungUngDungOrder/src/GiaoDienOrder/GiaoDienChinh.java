@@ -27,7 +27,7 @@ public class GiaoDienChinh extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JButton btnBan1;
-	private JTextField txtTongDonHang;
+	private JTextField tfTongDonHang;
 	private JLayeredPane layeredPane;
 	/**
 	 * Launch the application.
@@ -82,7 +82,7 @@ public class GiaoDienChinh extends JFrame {
 		JButton btnTrangchu = new JButton("Trang Chủ");
 		btnTrangchu.setForeground(new Color(255, 255, 255));
 		btnTrangchu.setFont(new Font("Segoe UI Black", Font.BOLD, 20));
-		btnTrangchu.setBounds(76, 159, 152, 51);
+		btnTrangchu.setBounds(76, 160, 152, 51);
 		btnTrangchu.setBorderPainted(false);
 		btnTrangchu.setContentAreaFilled(false);
 		layeredPane.add(btnTrangchu);
@@ -98,7 +98,7 @@ public class GiaoDienChinh extends JFrame {
 		JButton btnDonhang = new JButton("  Đơn Hàng");
 		btnDonhang.setForeground(Color.WHITE);
 		btnDonhang.setFont(new Font("Segoe UI Black", Font.BOLD, 20));
-		btnDonhang.setBounds(76, 254, 152, 51);
+		btnDonhang.setBounds(76, 252, 152, 51);
 		btnDonhang.setBorderPainted(false);
 		btnDonhang.setContentAreaFilled(false);
 		layeredPane.add(btnDonhang);
@@ -107,22 +107,6 @@ public class GiaoDienChinh extends JFrame {
 				dispose();
 				DonHang donhang = new DonHang();
 				donhang.setVisible(true);
-			}
-		});
-	
-		
-		JButton btnDoanhthu = new JButton("Doanh Thu");
-		btnDoanhthu.setForeground(Color.WHITE);
-		btnDoanhthu.setFont(new Font("Segoe UI Black", Font.BOLD, 20));
-		btnDoanhthu.setBounds(76, 349, 152, 51);
-		btnDoanhthu.setBorderPainted(false);
-		btnDoanhthu.setContentAreaFilled(false);
-		layeredPane.add(btnDoanhthu);
-		btnDoanhthu.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				DoanhThu thanhtoan = new DoanhThu();
-				thanhtoan.setVisible(true);
-				dispose();
 			}
 		});
 	
@@ -210,27 +194,27 @@ public class GiaoDienChinh extends JFrame {
 		JLabel lblTng = new JLabel("Tổng Đơn Hàng:");
 		lblTng.setForeground(new Color(255, 128, 64));
 		lblTng.setFont(new Font("Segoe UI Black", Font.PLAIN, 15));
-		lblTng.setBounds(37, 98, 138, 32);
+		lblTng.setBounds(48, 371, 138, 32);
 		layeredPane.add(lblTng);
 		
-		txtTongDonHang = new JTextField();
-		txtTongDonHang.setOpaque(false);
-		txtTongDonHang.setForeground(new Color(255, 140, 0));
-		txtTongDonHang.setFont(new Font("Segoe UI Black", Font.PLAIN, 17));
-		txtTongDonHang.setColumns(10);
-		txtTongDonHang.setBorder(null);
-		txtTongDonHang.setBounds(176, 97, 78, 33);
-		layeredPane.add(txtTongDonHang);
+		tfTongDonHang = new JTextField();
+		tfTongDonHang.setOpaque(false);
+		tfTongDonHang.setForeground(new Color(255, 140, 0));
+		tfTongDonHang.setFont(new Font("Segoe UI Black", Font.PLAIN, 17));
+		tfTongDonHang.setColumns(10);
+		tfTongDonHang.setBorder(null);
+		tfTongDonHang.setBounds(175, 370, 78, 33);
+		layeredPane.add(tfTongDonHang);
 		
-		JLabel lblNewLabel = new JLabel("Kay Coffee");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setBounds(76, 10, 138, 32);
-		layeredPane.add(lblNewLabel);
+		JLabel lblKeyCf = new JLabel("Kay Coffee");
+		lblKeyCf.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblKeyCf.setForeground(new Color(255, 255, 255));
+		lblKeyCf.setBounds(76, 10, 138, 32);
+		layeredPane.add(lblKeyCf);
 		
 		JLabel lblAnhGiaoDienChinh = new JLabel("");
 		lblAnhGiaoDienChinh.setBounds(0, 0, 785, 500);
-		lblAnhGiaoDienChinh.setIcon(new ImageIcon("D:\\ĐACS1\\giaodienchinh.png"));
+		lblAnhGiaoDienChinh.setIcon(new ImageIcon("D:\\ĐACS1\\GiaodienNhanVienn.png"));
 		contentPane.add(lblAnhGiaoDienChinh);
 		
 		demSoButtonMauXanh();
@@ -268,7 +252,7 @@ public class GiaoDienChinh extends JFrame {
 	}
 	
 	public void capNhatSoButtonMauXanh() {
-        txtTongDonHang.setText(Integer.toString(demSoButtonMauXanh()));
+        tfTongDonHang.setText(Integer.toString(demSoButtonMauXanh()));
     }
 	
 
