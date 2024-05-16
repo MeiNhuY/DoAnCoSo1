@@ -3,6 +3,8 @@ package GiaoDienOrder;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
@@ -12,6 +14,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -35,9 +39,14 @@ public class Menu extends JFrame {
 	private JComboBox comboxTenMon;
 	private String tfTongCong;
 	private JTextField tfmasanpham;
+	private JTable tableMenu;
 
     static Connection con;
     static Statement stmt;
+    private JTextField tfTenmon;
+    private JTextField tfDongia;
+	private AbstractButton btnBan1;
+	private AbstractButton btnBan2;
 	
 	
 	public static void main(String[] args) {
@@ -57,15 +66,14 @@ public class Menu extends JFrame {
 	public Menu() {
 		setTitle("Bạn có thể chọn món tại đây");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 310, 388);
-		
+		setBounds(100, 100, 719, 444);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLayeredPane layeredPane = new JLayeredPane();
-		layeredPane.setBounds(0, 0, 294, 349);
+		layeredPane.setBounds(0, 0, 703, 405);
 		contentPane.add(layeredPane);
 		
 
@@ -73,79 +81,60 @@ public class Menu extends JFrame {
 		lblTenMon.setBackground(new Color(0, 0, 0));
 		lblTenMon.setFont(new Font("Calibri Light", Font.PLAIN, 15));
 		lblTenMon.setForeground(new Color(0, 0, 0));
-		lblTenMon.setBounds(21, 101, 77, 27);
+		lblTenMon.setBounds(24, 139, 77, 27);
 		layeredPane.add(lblTenMon);
 		
 		JLabel lblSoLuong = new JLabel("Số lượng");
 		lblSoLuong.setForeground(Color.BLACK);
 		lblSoLuong.setFont(new Font("Calibri Light", Font.PLAIN, 15));
 		lblSoLuong.setBackground(Color.BLACK);
-		lblSoLuong.setBounds(21, 214, 77, 27);
+		lblSoLuong.setBounds(24, 228, 77, 27);
 		layeredPane.add(lblSoLuong);
 		
 		JLabel lblMenu = new JLabel("Menu");
 		lblMenu.setFont(new Font("Calibri Light", Font.PLAIN, 25));
-		lblMenu.setBounds(118, 22, 77, 27);
+		lblMenu.setBounds(88, 52, 77, 27);
 		layeredPane.add(lblMenu);
 
 		JLabel lblAnhgdMenu = new JLabel("");
-		lblAnhgdMenu.setBounds(0, -72, 308, 443);
-		lblAnhgdMenu.setIcon(new ImageIcon("D:\\ĐACS1\\menu.png"));
+		lblAnhgdMenu.setBounds(0, 0, 703, 394);
+		lblAnhgdMenu.setIcon(new ImageIcon("D:\\ĐACS1\\Menu.png"));
 		contentPane.add(lblAnhgdMenu);
 		
 		JLabel lblMaSanPham = new JLabel("Mã sản phẩm");
 		lblMaSanPham.setForeground(Color.BLACK);
 		lblMaSanPham.setFont(new Font("Calibri Light", Font.PLAIN, 15));
 		lblMaSanPham.setBackground(Color.BLACK);
-		lblMaSanPham.setBounds(21, 156, 100, 27);
+		lblMaSanPham.setBounds(27, 101, 100, 27);
 		layeredPane.add(lblMaSanPham);
 		
+		JLabel lblDongia = new JLabel("Đơn giá");
+		lblDongia.setForeground(Color.BLACK);
+		lblDongia.setFont(new Font("Calibri Light", Font.PLAIN, 15));
+		lblDongia.setBackground(Color.BLACK);
+		lblDongia.setBounds(24, 187, 100, 27);
+		layeredPane.add(lblDongia);
+		
+		tfTenmon = new JTextField();
+		tfTenmon.setColumns(10);
+		tfTenmon.setBounds(118, 140, 100, 19);
+		layeredPane.add(tfTenmon);
+		
 		tfSoLuong = new JTextField();
-		tfSoLuong.setBounds(123, 216, 84, 19);
+		tfSoLuong.setBounds(116, 229, 102, 19);
 		layeredPane.add(tfSoLuong);
 		tfSoLuong.setColumns(10);
 		
+		tfDongia = new JTextField();
+		tfDongia.setColumns(10);
+		tfDongia.setBounds(117, 187, 98, 19);
+		layeredPane.add(tfDongia);
+		
 		tfmasanpham = new JTextField();
 		tfmasanpham.setColumns(10);
-		tfmasanpham.setBounds(123, 157, 84, 19);
+		tfmasanpham.setBounds(121, 102, 98, 19);
 		layeredPane.add(tfmasanpham);
-
-
-		comboxTenMon = new JComboBox();
-		comboxTenMon.setModel(new DefaultComboBoxModel(new String[] {"Cà phê sữa phin/máy", "Cà phê đen phin/ máy", "Cà phê sữa Sài Gòn", "Cà phê đen Sài Gòn", "Cà phê muối", "Trà gừng mật ong", "Trà gừng thảo mộc", "Trà lipton", "Trà ÔLong", "Trà Matcha", "Trà Sữa Truyền Thống ", "Sữa tươi Trân châu đường đen", "Sữa chua Dâu", "Sữa chua Xoài", "Sữa chua Trái cây", "Nước ép Cam", "Nước ép Dứa", "Nước ép cóc", "Nước ép Dưa hấu", "Nước ép Ổi", "Kem Dâu", "Kem Xoài", "Kem Trái Cây", "Kem Dưa Hấu"}));
-		comboxTenMon.setToolTipText("");
-		comboxTenMon.setBounds(118, 102, 148, 21);
-		layeredPane.add(comboxTenMon);
-		comboxTenMon.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String tenmon = (String) comboxTenMon.getSelectedItem();
-		        String masanpham = layMaSanPham(tenmon);
-		        tfmasanpham.setText(masanpham);
-			}
-		});
 		
-		
-		JButton btnOK = new JButton("OK");
-		btnOK.setForeground(new Color(255, 255, 255));
-		btnOK.setBounds(118, 285, 77, 36);
-		btnOK.setBorderPainted(false);
-		btnOK.setContentAreaFilled(false);
-		layeredPane.add(btnOK);
-		btnOK.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int soluong = Integer.parseInt(tfSoLuong.getText());
-				if (soluong == 0) {
-		            JOptionPane.showMessageDialog(contentPane, "Số lượng không được bằng 0", "Lỗi", JOptionPane.ERROR_MESSAGE);
-	  
-				} else {
-		        	dispose();
-		        	ChuyenDuLieuQuaBan1();	  
-			        Ban1 ban1 = new Ban1();
-			        ban1.napDuLieuTuCSDL();
-		            ban1.setVisible(true);
-		        }
-			}
-		});
 		
 		
 		JButton btnThoat = new JButton("Thoát");
@@ -162,136 +151,90 @@ public class Menu extends JFrame {
 				ban1.setVisible(true);
 			}
 		});
-	}
-	
+		
+		 JScrollPane scrollPane = new JScrollPane();
+		 scrollPane.setBorder(null);
+	     scrollPane.setBounds(243, 11, 450, 328);
+	     layeredPane.add(scrollPane);
 
-	private double LayDonGia(String tenmon) {
-		switch(tenmon) {
-		case "Cà phê sữa phin/máy": 
-			return 25000;
-		case "Cà phê đen phin/ máy": 
-			return 26000;
-		case "Cà phê sữa Sài Gòn": 
-			return 27500;
-		case "Cà phê đen Sài Gòn":
-			return 27560;
-		case "Cà phê muối":
-			return 35000;
-		case "Trà gừng mật ong":
-			return 20000;
-		case "Trà gừng thảo mộc":
-			return 29000;
-		case "Trà lipton":
-			return 17000;
-		case "Trà ÔLong":
-			return 21000;
-		case "Trà Matcha-10":
-			return 24000;
-		case "Trad Sữa Truyền Thống":
-			return 15000;
-		case "Sữa tươi Trân châu đường đen":
-			return 25000;
-		case "Sữa chua Dâu":
-			return 20000;
-		case "Sữa chua xoài":
-			return 20000;
-		case "Sữa chua Trái cây":
-			return 26000;
-		case "Nước ép Cam":
-			return 28000;
-		case "Nước ép Dứa":
-			return 22500;
-		case "Nước ép cóc":
-			return 18000;
-		case "Nước ép Dưa hấu":
-			return 23000;
-		case "Nước ép Ổi":
-			return 23000;
-		case "Kem Dâu":
-			return 12000;
-		case "Kem Xoài":
-			return 12000;
-		case "Kem Trái Cây":
-			return 16000;
-		case "Kem Dưa Hấu":
-			return 17000;
-		default:
-			return 0;
+	     tableMenu = new JTable();
+	     tableMenu.setOpaque(false); 
+	     scrollPane.setViewportView(tableMenu);
+	     tableMenu.setModel(new DefaultTableModel(
+	         new Object[][] {},
+	         new String[] {"Mã sản phẩm", "Tên món", "Đơn giá/ món"}
+	         
+	     ));
+	     tableMenu.addMouseListener(new MouseAdapter() {
+	            @Override
+	            public void mouseClicked(MouseEvent e) {
+	                int row = tableMenu.getSelectedRow();
+	                if (row >= 0) {
+	                    String masanpham = (String) tableMenu.getValueAt(row, 0);
+	                    String tenmon = (String) tableMenu.getValueAt(row, 1);
+	                    String dongia = String.valueOf(tableMenu.getValueAt(row, 2));
+
+	                    tfmasanpham.setText(masanpham);
+	                    tfTenmon.setText(tenmon);
+	                    tfDongia.setText(dongia);
+	                }
+	            }
+	        });
+	     
+	     JButton btnOK = new JButton("OK");
+			btnOK.setForeground(new Color(255, 255, 255));
+			btnOK.setBounds(88, 279, 77, 36);
+			btnOK.setBorderPainted(false);
+			btnOK.setContentAreaFilled(false);
+			layeredPane.add(btnOK);
+			btnOK.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					 String actionCommand = e.getActionCommand();
+					 LaySoBan(actionCommand);
+					 ChuyenDuLieuQuaBan();
+					 int soluong = Integer.parseInt(tfSoLuong.getText());
+					 if (soluong == 0) {
+				            JOptionPane.showMessageDialog(contentPane, "Số lượng không được bằng 0", "Lỗi", JOptionPane.ERROR_MESSAGE);
+						} 
+				}
+			});
+			
+			
 		}
+	
+	
+	void LaySoBan(String actionCommand) {
+		
+	    switch (actionCommand) {
+	        case "Ban1":
+	        	 dispose();
+				 Ban1 ban1 = new Ban1();
+				 ban1.setVisible(true);
+				
+			
+					            break;
+	        case "Ban2":
+	        	 dispose();
+				 Ban2 ban2 = new Ban2();
+				 ban2.setVisible(true);
+				
+	            break;
+	        // Thêm các case cho các button khác nếu cần
+	        default:
+	            // Xử lý mặc định
+	            break;
+	    }
 	}
-	
-	
-	protected String layMaSanPham(String masanpham) {
-		switch(masanpham) {
-		case "Cà phê sữa phin/máy": 
-			return "CF001";
-		case "Cà phê đen phin/ máy": 
-			return "CF002";
-		case "Cà phê sữa Sài Gòn": 
-			return "CF003";
-		case "Cà phê đen Sài Gòn":
-			return "CF004";
-		case "Cà phê muối":
-			return "CF005";
-		case "Trà gừng mật ong":
-			return "T011";
-		case "Trà gừng thảo mộc":
-			return "T012";
-		case "Trà lipton":
-			return "T013";
-		case "Trà ÔLong":
-			return "T014";
-		case "Trà Matcha-10":
-			return "T015";
-		case "Trad Sữa Truyền Thống":
-			return "S055";
-		case "Sữa tươi Trân châu đường đen":
-			return "S066";
-		case "Sữa chua Dâu":
-			return "SC520";
-		case "Sữa chua Xoài":
-			return "SC521";
-		case "Sữa chua Trái cây":
-			return "SC522";
-		case "Nước ép Cam":
-			return "N00E";
-		case "Nước ép Dứa":
-			return "N01E";
-		case "Nước ép cóc":
-			return "N02E";
-		case "Nước ép Dưa hấu":
-			return "N03E";
-		case "Nước ép Ổi":
-			return "N04E";
-		case "Kem Dâu":
-			return "K11E";
-		case "Kem Xoài":
-			return "K22E";
-		case "Kem Trái Cây":
-			return "K33E";
-		case "Kem Dưa Hấu":
-			return "K44E";
-		default:
-			return "!";
-		}
-	}
-	
-	
 	
 	//Xử lí sự kiện 
-	public void ChuyenDuLieuQuaBan1() {
-		 	String tenmon = (String) comboxTenMon.getSelectedItem();
+	public void ChuyenDuLieuQuaBan() {
+			String masanpham = tfmasanpham.getText();
+		 	String tenmon = (String) tfTenmon.getText();
+		 	double dongia = Double.parseDouble(tfDongia.getText());
 	        int soluong = Integer.parseInt(tfSoLuong.getText());
-	        double dongia = LayDonGia(tenmon);
-	        String masanpham = tfmasanpham.getText();
-	     // Kiểm tra món đã tồn tại trong đơn hàng chưa
-	        if (kiemTraMonTonTai(masanpham)) {
-	            JOptionPane.showMessageDialog(contentPane, "Món này đã chọn trước đó, Vui lòng thoát trang và chỉnh sửa số lượng!", "Thông Báo"
-	            		+ "", JOptionPane.WARNING_MESSAGE);
-	        } else {
-	            double thanhtien = soluong * dongia;
-	            themDuLieuVaoCSDL(masanpham, tenmon, soluong, dongia, thanhtien);
-	        }
+	        
+	        Ban1.addOrder(masanpham, tenmon, soluong, dongia);
+	        Ban1.TongCong();
     }
 	
 
@@ -345,6 +288,27 @@ public class Menu extends JFrame {
 	        return false; // Trả về false nếu có lỗi xảy ra
 	    }
 	}
+
+
+	public void getDataToMenu() {
+		con = ketNoiCSDL();
+        try {
+            ResultSet rs = stmt.executeQuery("SELECT * FROM machang");
+            DefaultTableModel model = (DefaultTableModel) tableMenu.getModel();
+            model.setRowCount(0);
+
+            while (rs.next()) {
+                String masanpham = rs.getString("masanpham");
+                String tenmon = rs.getString("tenmon");
+                double dongia = rs.getDouble("dongia");
+                model.addRow(new Object[]{masanpham, tenmon, dongia});
+            }
+            con.close();
+        } catch (Exception ex2) {
+            ex2.printStackTrace();
+        }
+	}
+
 
 	
 	

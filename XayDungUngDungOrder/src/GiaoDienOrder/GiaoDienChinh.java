@@ -8,6 +8,7 @@ import javax.swing.border.EmptyBorder;
 
 import javax.swing.JLabel;
 import javax.management.loading.PrivateClassLoader;
+import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
 import javax.swing.JLayeredPane;
 import javax.swing.JButton;
@@ -29,6 +30,7 @@ public class GiaoDienChinh extends JFrame {
 	private JButton btnBan1;
 	private JTextField tfTongDonHang;
 	private JLayeredPane layeredPane;
+	private JButton btnBan2;
 	/**
 	 * Launch the application.
 	 */
@@ -50,6 +52,8 @@ public class GiaoDienChinh extends JFrame {
 	
 	public GiaoDienChinh() {
 		
+		 
+			
 		setTitle("Trang chủ");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 801, 533);
@@ -111,7 +115,7 @@ public class GiaoDienChinh extends JFrame {
 		});
 	
 		
-		btnBan1 = new JButton(" 1");
+		btnBan1 = new JButton("1");
 		btnBan1.setForeground(new Color(255, 140, 0));
 		btnBan1.setFont(new Font("Arial", Font.BOLD, 24));
 		btnBan1.setBounds(325, 250, 89, 32);
@@ -121,20 +125,28 @@ public class GiaoDienChinh extends JFrame {
         btnBan1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {    
                 Ban1 b1 = new Ban1();
-                b1.napDuLieuTuCSDL(); // Gọi phương thức để chuyển dữ liệu từ bảng danhsach sang bảng của lớp Ban1
                 b1.setVisible(true);
                 dispose();
+                //handleTableButtonClick(e);
 			}
 		});
 		
 		
-		JButton btnBan2 = new JButton("2");
+		btnBan2 = new JButton("2");
 		btnBan2.setForeground(new Color(255, 140, 0));
 		btnBan2.setFont(new Font("Arial", Font.BOLD, 24));
 		btnBan2.setBounds(451, 229, 78, 74);
 		btnBan2.setBorderPainted(false);
 		btnBan2.setContentAreaFilled(false);
 		layeredPane.add(btnBan2);
+		btnBan2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {    
+                Ban2 b2 = new Ban2();
+                b2.setVisible(true);
+                dispose();
+                
+			}
+		});
 		
 		JButton btnBan3 = new JButton("3");
 		btnBan3.setForeground(new Color(255, 140, 0));
@@ -197,15 +209,6 @@ public class GiaoDienChinh extends JFrame {
 		lblTng.setBounds(48, 371, 138, 32);
 		layeredPane.add(lblTng);
 		
-		tfTongDonHang = new JTextField();
-		tfTongDonHang.setOpaque(false);
-		tfTongDonHang.setForeground(new Color(255, 140, 0));
-		tfTongDonHang.setFont(new Font("Segoe UI Black", Font.PLAIN, 17));
-		tfTongDonHang.setColumns(10);
-		tfTongDonHang.setBorder(null);
-		tfTongDonHang.setBounds(175, 370, 78, 33);
-		layeredPane.add(tfTongDonHang);
-		
 		JLabel lblKeyCf = new JLabel("Kay Coffee");
 		lblKeyCf.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		lblKeyCf.setForeground(new Color(255, 255, 255));
@@ -217,9 +220,31 @@ public class GiaoDienChinh extends JFrame {
 		lblAnhGiaoDienChinh.setIcon(new ImageIcon("D:\\ĐACS1\\GiaodienNhanVienn.png"));
 		contentPane.add(lblAnhGiaoDienChinh);
 		
+		tfTongDonHang = new JTextField();
+		tfTongDonHang.setOpaque(false);
+		tfTongDonHang.setForeground(new Color(255, 140, 0));
+		tfTongDonHang.setFont(new Font("Segoe UI Black", Font.PLAIN, 17));
+		tfTongDonHang.setColumns(10);
+		tfTongDonHang.setBorder(null);
+		tfTongDonHang.setBounds(175, 370, 78, 33);
+		layeredPane.add(tfTongDonHang);
+		
 		demSoButtonMauXanh();
+		 btnBan1.setActionCommand("Ban1");
+			btnBan2.setActionCommand("Ban2");
 	}
 	
+//	private void handleTableButtonClick(ActionEvent e) {
+//        String command = e.getActionCommand();
+//        Menu menu = new Menu();
+//        menu.LaySoBan(command); 
+//        menu.setVisible(true);
+//        dispose(); 
+//       
+//    }
+
+
+
 	public void capNhatMauSauKhiLuu() {
 	      btnBan1.setForeground(Color.BLUE);
 	
@@ -232,28 +257,24 @@ public class GiaoDienChinh extends JFrame {
 	
 	public int demSoButtonMauXanh() {
 	    int soButtonMauXanh=0;
-
-	    // Lặp qua tất cả các nút trong giao diện chính
 	    Component[] components = layeredPane.getComponents();
 	    for (Component component : components) {
-	        // Kiểm tra nếu thành phần là JButton
 	        if (component instanceof JButton) {
 	            JButton button = (JButton) component;
-	            // Kiểm tra màu văn bản của nút
 	            if (button.getForeground().equals(Color.BLUE)) {
-	                soButtonMauXanh++;
-	                
+	                soButtonMauXanh++;     
 	            }
 	        }
-
-	    }
-	   
+	    }  
 	    return soButtonMauXanh;
 	}
+	
 	
 	public void capNhatSoButtonMauXanh() {
         tfTongDonHang.setText(Integer.toString(demSoButtonMauXanh()));
     }
+	
+	
 	
 
 }

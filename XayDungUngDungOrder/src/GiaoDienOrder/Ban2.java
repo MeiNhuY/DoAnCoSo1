@@ -30,13 +30,13 @@ import javax.swing.JTextField;
 
 
 
-public class Ban1 extends JFrame {
+public class Ban2 extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     private static JTextField tfTongCong;
     private DefaultTableModel model;
-	private JLabel lblBan1;
+	private JLabel lblBan2;
 	private static JTable table;
 	
 	
@@ -59,7 +59,7 @@ public class Ban1 extends JFrame {
     
     
     //GiaoDien
-    public Ban1() {
+    public Ban2() {
     	
     	setTitle("BÀN  1");
     	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -73,11 +73,11 @@ public class Ban1 extends JFrame {
 		layeredPane.setBounds(0, 0, 785, 494);
 		contentPane.add(layeredPane);
         
-		lblBan1 = new JLabel("1");
-        lblBan1.setForeground(new Color(236, 112, 19));
-        lblBan1.setFont(new Font("Segoe UI Black", Font.PLAIN, 24));
-        lblBan1.setBounds(46, 39, 29, 46);
-        layeredPane.add(lblBan1);
+		lblBan2 = new JLabel("2");
+        lblBan2.setForeground(new Color(236, 112, 19));
+        lblBan2.setFont(new Font("Segoe UI Black", Font.PLAIN, 24));
+        lblBan2.setBounds(46, 39, 29, 46);
+        layeredPane.add(lblBan2);
         
         JLabel lblDanhSach = new JLabel("Danh sách");
 		lblDanhSach.setForeground(new Color(236, 112, 19));
@@ -110,7 +110,7 @@ public class Ban1 extends JFrame {
 		btnThoat.setIcon(new ImageIcon("D:\\ĐACS1\\muiten.png"));
 		btnThoat.setForeground(new Color(236, 112, 19));
 		btnThoat.setBounds(23, 11, 130, 21);
-		btnThoat.setBorderPainted(false);  
+		btnThoat.setBorderPainted(false);
 		btnThoat.setContentAreaFilled(false);
 		layeredPane.add(btnThoat);
         btnThoat.addActionListener(new ActionListener() {
@@ -133,10 +133,10 @@ public class Ban1 extends JFrame {
 		layeredPane.add(btnMenu);
         btnMenu.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	dispose();
                 Menu menu = new Menu();
                 menu.setVisible(true);
                 menu.getDataToMenu();
-                dispose();
                 handleTableButtonClick(e);
             }
         });
@@ -151,6 +151,7 @@ public class Ban1 extends JFrame {
 		layeredPane.add(btnThem1);
         btnThem1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	dispose();
                 Menu menu = new Menu();
                 menu.setVisible(true);
                 menu.getDataToMenu();
@@ -209,7 +210,7 @@ public class Ban1 extends JFrame {
 		       
 		        java.util.Date date = new java.util.Date();
 		        Timestamp timestamp = new Timestamp(date.getTime());
-		        int soBan = Integer.parseInt(lblBan1.getText());
+		        int soBan = Integer.parseInt(lblBan2.getText());
 		        double tongTien = Double.parseDouble(tfTongCong.getText());
 		        
 		        DuaDuLieuLenCSDLDonHang();
@@ -239,10 +240,8 @@ public class Ban1 extends JFrame {
         		"Mã sản phẩm", "Tên món", "Số lượng", "Đơn giá/ món", "Thành tiền"
         	}
         ));
-        
     }
    
-
     private void handleTableButtonClick(ActionEvent e) {
         String command = e.getActionCommand();
         Menu menu = new Menu();
@@ -251,6 +250,7 @@ public class Ban1 extends JFrame {
         dispose(); 
        
     }
+    
     
 	//Xử lí sự kiện
     public static Connection ketNoiCSDL() {
@@ -397,7 +397,7 @@ public class Ban1 extends JFrame {
     	        con = ketNoiCSDL();
     	        String sql = "INSERT INTO donhang (soban, tongtien, thoigian) VALUES (?, ?, ?)";
     	        PreparedStatement ps = con.prepareStatement(sql);
-    	        ps.setInt(1, Integer.parseInt(lblBan1.getText()));
+    	        ps.setInt(1, Integer.parseInt(lblBan2.getText()));
     	        ps.setDouble(2, Double.parseDouble(tfTongCong.getText()));
     	        ps.setTimestamp(3, new Timestamp(new java.util.Date().getTime()));
     	        

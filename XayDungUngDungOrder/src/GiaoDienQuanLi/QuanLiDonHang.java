@@ -1,4 +1,4 @@
-package GiaoDienOrder;
+package GiaoDienQuanLi;
 
 import java.awt.EventQueue;
 
@@ -28,7 +28,7 @@ import javax.swing.JScrollPane;
 import java.awt.Font;
 import javax.swing.JTextField;
 
-public class DonHang extends JFrame {
+public class QuanLiDonHang extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -45,7 +45,7 @@ public class DonHang extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DonHang frame = new DonHang();
+					QuanLiDonHang frame = new QuanLiDonHang();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -54,9 +54,24 @@ public class DonHang extends JFrame {
 		});
 	}
 
+	/**
+	 * Create the frame.
+	 */
+//	public DonHang(int soBan, double tongTien, Timestamp thoiGian) {
+//        // Khởi tạo frame DonHang
+//        initialize();
+//        // Thêm dữ liệu vào bảng
+//        AddDataTable(soBan, tongTien, thoiGian);
+//    }
+//	
+//	
+//	
+//	private void initialize() {
+//		// TODO Auto-generated method stub
+//		
+//	}
 
-
-	public DonHang() {
+	public QuanLiDonHang() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 411, 507);
 		contentPane = new JPanel();
@@ -69,20 +84,20 @@ public class DonHang extends JFrame {
 		layeredPane.setBounds(0, 10, 387, 437);
 		contentPane.add(layeredPane);
 		
-		JButton btnThem = new JButton("Thêm ");
-		btnThem.setFont(new Font("Calibri Light", Font.PLAIN, 18));
-		btnThem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				GiaoDienChinh main = new GiaoDienChinh();
-				main.setVisible(true);
-			}
-		});
-		btnThem.setForeground(new Color(255, 255, 255));
-		btnThem.setBounds(55, 393, 89, 44);
-		btnThem.setBorderPainted(false);
-		btnThem.setContentAreaFilled(false);
-		layeredPane.add(btnThem);
+//		JButton btnThem = new JButton("Thêm ");
+//		btnThem.setFont(new Font("Calibri Light", Font.PLAIN, 18));
+//		btnThem.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				dispose();
+//				GiaoDienOrder.GiaoDienChinh main = new GiaoDienOrder.GiaoDienChinh();
+//				main.setVisible(true);
+//			}
+//		});
+//		btnThem.setForeground(new Color(255, 255, 255));
+//		btnThem.setBounds(55, 393, 89, 44);
+//		btnThem.setBorderPainted(false);
+//		btnThem.setContentAreaFilled(false);
+//		layeredPane.add(btnThem);
 		
 		JButton btnXoa = new JButton("Xóa");
 		btnXoa.addActionListener(new ActionListener() {
@@ -109,9 +124,23 @@ public class DonHang extends JFrame {
 		btnXoa.setFont(new Font("Calibri Light", Font.PLAIN, 18));
 		btnXoa.setContentAreaFilled(false);
 		btnXoa.setBorderPainted(false);
-		btnXoa.setBounds(163, 393, 89, 44);
+		btnXoa.setBounds(170, 393, 89, 44);
 		layeredPane.add(btnXoa);
 		
+		JButton btnThanhToan = new JButton("Doanh Thu");
+		btnThanhToan.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				DoanhThu1 doanhthu = new DoanhThu1();
+				doanhthu.setVisible(true);
+			}
+		});
+		btnThanhToan.setForeground(Color.WHITE);
+		btnThanhToan.setFont(new Font("Calibri Light", Font.PLAIN, 18));
+		btnThanhToan.setContentAreaFilled(false);
+		btnThanhToan.setBorderPainted(false);
+		btnThanhToan.setBounds(262, 390, 141, 51);
+		layeredPane.add(btnThanhToan);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(30, 138, 334, 134);
@@ -123,7 +152,7 @@ public class DonHang extends JFrame {
 			new Object[][] {
 			},
 			new String[] {
-				 "S\u1ED1 B\u00E0n", "T\u1ED5ng Ti\u1EC1n", "Th\u1EDDi Gian"
+			 "S\u1ED1 B\u00E0n", "T\u1ED5ng Ti\u1EC1n", "Th\u1EDDi Gian", "Nhân viên"
 			}
 		));
 		table.setFont(new Font("Calibri Light", Font.PLAIN, 15));
@@ -135,17 +164,17 @@ public class DonHang extends JFrame {
 		btnThoatton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				GiaoDienChinh main = new GiaoDienChinh();
+				GiaoDienChinh1 main = new GiaoDienChinh1();
 				main.setVisible(true);
 			}
 		});
 		btnThoatton.setBounds(10, 0, 53, 24);
 		layeredPane.add(btnThoatton);
 		
-		JLabel lblNewLabel_1 = new JLabel("Đơn hàng");
+		JLabel lblNewLabel_1 = new JLabel("Quản Lí Đơn Hàng");
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
-		lblNewLabel_1.setFont(new Font("Calibri Light", Font.PLAIN, 30));
-		lblNewLabel_1.setBounds(145, 20, 135, 45);
+		lblNewLabel_1.setFont(new Font("Calibri Light", Font.PLAIN, 25));
+		lblNewLabel_1.setBounds(125, 20, 188, 45);
 		layeredPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel = new JLabel("");
@@ -155,7 +184,7 @@ public class DonHang extends JFrame {
 		
 		
 		
-		napDuLieuTuCSDL();
+	
 	}
 	
 	
@@ -220,8 +249,6 @@ public class DonHang extends JFrame {
 	
 	
 	 }
-
-
 
 
 	
